@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<title>Express Document</title>
+		<link rel="stylesheet" type="text/css" href="./stylesheets/bootstrap.css" />
+		<script type="text/javascript" src="./javascripts/jquery.js" ></script>
+		<script type="text/javascript" src="./javascripts/vue.js" ></script>
+	</head>
+	<body>
+		<div class="container">
+			<h1>:) Hello Expess!</h1>
+		</div>
+		<script type="text/javascript">
+
+			// console.log( $.get );
+			// $.deleta('http://localhost:3000/users/1', function(res){ console.log(JSON.parse(res.responseText)); }, 'json')
+
+			$.ajax({
+				url: 'http://localhost:3000/users/1',
+				type: 'get',
+				dataTupe: 'json',
+				success: function ( res ) {
+					console.log(res);
+				}
+			});
+
+		</script>
+	</body>
+</html>

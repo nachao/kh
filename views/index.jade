@@ -1,0 +1,26 @@
+doctype html
+html(lang=zh)
+	head
+
+		title Jade Example
+
+		// 加载样式文件
+		link(rel="stylesheet", href="/stylesheets/bootstrap.css")
+
+		// 加载脚本文件
+		script(src="/javascripts/jquery.js")
+
+	body
+
+		div.container
+
+			h1 #{title}
+			p Welcom11e to #{title}
+
+			ul
+				- for ( var i=0; i<data.length; i++ ) {
+					li 
+						p id: #{data[i].id}
+						p title: #{data[i].title}
+						p content: #{data[i].content}
+				- }

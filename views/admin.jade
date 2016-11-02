@@ -1,0 +1,66 @@
+doctype html
+html
+	head
+		title Jade Example
+
+		link(rel="stylesheet", href="/stylesheets/bootstrap.css")
+		link(rel="stylesheet", href="/bootstrap-fileinput-master/css/fileinput.css")
+
+		script(src="/javascripts/jquery.js")
+		script(src="/javascripts/bootstrap.js")
+		script(src="/bootstrap-fileinput-master/js/fileinput.min.js")
+		script(src="/bootstrap-fileinput-master/js/fileinput_locale_zh.js")
+	body
+
+		div.container
+
+			h1 Public
+			smaill by encyclopedia.
+			hr
+
+			form.form.form-horizontal
+				div.form-group
+					label.col-sm-2.control-label Title
+					div.col-sm-10
+						input.form-control
+				div.form-group
+					label.col-sm-2.control-label Content
+					div.col-sm-10
+						textarea.form-control(rows=3)
+				hr
+				div.form-group
+					label.col-sm-2.control-label Cover
+					div.col-sm-10
+						input.file(type="file", id="input-1",multiple="true") 
+						div#kv-success-1
+							h4 Upload Status
+							ul
+				div.form-group
+					div.col-sm-10.col-sm-offset-2
+						button.btn.btn-primary Submit
+
+		script.
+			console.log(1);
+			
+			//初始化fileinput控件（第一次初始化）
+			$('#input-1').fileinput({
+				language: 'zh', 					// 设置语言
+				uploadUrl: '/users/upload',		 	// 上传的地址
+				showUpload: true, 					// 是否显示上传按钮
+				showPreview: true,	 				// 显示缩略图
+				showCaption: true,					// 是否显示标题
+				browseClass: "btn btn-primary",		// 按钮样式      
+				previewFileIcon: "<i class='glyphicon glyphicon-king'></i>", 
+			}).on('fileuploaded', function(event, data, id, index) {
+				var fname = data.files[index].name,
+					out = '<li>' + 'Uploaded file # ' + (index + 1) + ' - '  +  
+						fname + ' successfully.' + '</li>';
+
+				$('#kv-success-1 ul').append(out);
+			}).on("filepredelete", function(jqXHR) {
+				var abort = true;
+				if (confirm("Are you sure you want to delete this image?")) {
+					abort = false;
+				}
+				return abort; // you can also send any data/object that you can receive on `filecustomerror` event
+			});
